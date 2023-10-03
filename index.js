@@ -1,9 +1,11 @@
 const searchInput = document.getElementById("search-input");
 const searchForm = document.getElementById("search-form");
 const injectCard = document.getElementById("cards");
+const cart = document.getElementsByClassName("offcanvas-body");
 // const query = searchInput.value;
 
 const fetchImages = (query) => {
+  showSpinner();
   fetch("https://striveschool-api.herokuapp.com/books")
     .then((response) => response.json())
     .then((data) => {
@@ -32,14 +34,39 @@ const cards = (filteredBooks) => {
     injectCard.innerHTML +=
       /*html*/
       `<div class="col">
-        <div class="card mx-auto" style="width: 18rem; height: 100px;">
-                <img class="card-img-top" width=100% src="${filteredBooks[i].img}" alt="Card image cap">
+        <div class="card mx-auto mt-4 shadow" style="width: 14rem;">
+                <img class="card-img-top" src="${filteredBooks[i].img}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">${filteredBooks[i].title}</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h4 class="card-title truncate-2-lines">${filteredBooks[i].title}</h4>                
+                    <button type="button" class="btn btn-secondary" onclick="addToCart(event)">ADD</button>
+                    <button type="button" class="btn btn-warning" onclick="removeCard(event)">DELETE</button>             
                 </div>
             </div>
         </div>`;
   }
 };
+
+const addToCart = (event) => {};
+
+const removeCard = (event) => {
+  const deleteButton = event.target;
+  const cardElement = deleteButton.closest(".card");
+  if (cardElement) {
+    cardElement.parentElement.remove();
+  }
+};
+
+const showSpinner = () => {
+  const spinnerHTML =
+    /*html*/
+    `<div class="d-flex align-items-center center-spinner">
+      <strong role="status"></strong>
+      <div class="spinner-border mx-auto mt-5" aria-hidden="true"></div>
+      </div>`;
+  injectCard.innerHTML = spinnerHTML;
+};
+
+//se premo su un altro titolo o sullo schermo il nome completo svanisce
+const popover = new bootstrap.Popover(".popover-dismiss", {
+  trigger: "focus",
+});

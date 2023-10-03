@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(226, 226, 226) !important;
+}
+
 .bg-brown {
   background-image: linear-gradient(to right bottom, #622d00, #874103, #ae5703, #d66e03, #ff8600);
 }
@@ -8,6 +12,32 @@ nav .form-control {
 
 form > button {
   right: 8px;
+}
+
+#cards img {
+  object-fit: cover;
+  width: 100%;
+  height: 350px;
+}
+
+.truncate-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.invisibile {
+  display: none;
+}
+
+.center-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
 }
 
 /* bottone che sposta la x di chrome per cancellare la ricerca */
