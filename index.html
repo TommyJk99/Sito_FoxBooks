@@ -23,9 +23,13 @@
           </button>
         </form>
         <!-- OFFCANVAS FOR THE CART -->
-        <button class="btn pt-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+        <button class="btn pt-0 position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-cart2" viewBox="0 0 16 16">
             <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              0
+              <span class="visually-hidden">unread messages</span>
+            </span>
           </svg>
         </button>
 
@@ -35,7 +39,7 @@
             <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Cart 🛒</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body"></div>
+          <div class="offcanvas-body"><div id="cart-total">Total: $0.00</div></div>
         </div>
       </div>
     </nav>

@@ -53,6 +53,8 @@ const cards = (filteredBooks) => {
 };
 
 const addToCart = (event) => {
+  cartBadgeIncrease();
+
   // Ottieni l'elemento card corrispondente al bottone premuto
   let cardElement = event.target.closest(".card");
 
@@ -78,6 +80,7 @@ const addToCart = (event) => {
           </div>
         </div>
     `;
+  updateCartTotal();
 };
 
 const removeCard = (event) => {
@@ -96,6 +99,32 @@ const showSpinner = () => {
       <div class="spinner-border mx-auto mt-5" aria-hidden="true"></div>
       </div>`;
   injectCard.innerHTML = spinnerHTML;
+};
+
+const cartBadgeIncrease = () => {
+  const badges = document.getElementsByClassName("badge");
+  if (badges.length > 0) {
+    const badge = badges[0]; // riferimento al primo badge
+    const currentValue = parseInt(badge.innerHTML, 10); // ottieni il valore corrente e convertilo in un numero
+    badge.innerHTML = currentValue + 1; // incrementa e reimposta il valore
+  }
+};
+
+const sumCartItems = () => {
+  const prices = document.querySelectorAll(".cart-item .card-price");
+  let total = 0;
+
+  prices.forEach((priceElement) => {
+    const priceValue = parseFloat(priceElement.textContent.replace("Price 👉", "").replace("$", "").trim());
+    total += priceValue;
+  });
+
+  return total;
+};
+
+const updateCartTotal = () => {
+  const total = sumCartItems();
+  document.getElementById("cart-total").textContent = `Total: $${total.toFixed(2)}`;
 };
 
 //se premo su un altro titolo o sullo schermo il nome completo svanisce

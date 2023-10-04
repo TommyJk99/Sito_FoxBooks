@@ -60,6 +60,11 @@ form > button {
   font-weight: bold;
 }
 
+.offcanvas-body {
+  font-weight: bold;
+  font-size: larger;
+}
+
 /* bottone che sposta la x di chrome per cancellare la ricerca */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
