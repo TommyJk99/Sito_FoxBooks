@@ -34,19 +34,51 @@ const cards = (filteredBooks) => {
     injectCard.innerHTML +=
       /*html*/
       `<div class="col">
-        <div class="card mx-auto mt-4 shadow" style="width: 14rem;">
+        <div class="card mx-auto mt-5 shadow zoom position-relative" style="width: 16rem;" data-price="${filteredBooks[i].price}">
                 <img class="card-img-top" src="${filteredBooks[i].img}" alt="Card image cap">
                 <div class="card-body">
-                    <h4 class="card-title truncate-2-lines">${filteredBooks[i].title}</h4>                
+                    <h4 class="card-title truncate-2-lines mb-3" 
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top" 
+                        title="${filteredBooks[i].title}">
+                        ${filteredBooks[i].title}
+                    </h4>                
                     <button type="button" class="btn btn-secondary" onclick="addToCart(event)">ADD</button>
-                    <button type="button" class="btn btn-warning" onclick="removeCard(event)">DELETE</button>             
+                    <button type="button" class="btn btn-warning" onclick="removeCard(event)">DELETE</button>  
+                               
                 </div>
             </div>
         </div>`;
   }
 };
 
-const addToCart = (event) => {};
+const addToCart = (event) => {
+  // Ottieni l'elemento card corrispondente al bottone premuto
+  let cardElement = event.target.closest(".card");
+
+  let imgSrc = cardElement.querySelector(".card-img-top").src;
+  let title = cardElement.querySelector(".card-title").title;
+  const price = cardElement.getAttribute("data-price"); //APPROCCIO CON DATA FIGO
+
+  let offcanvasBody = document.querySelector(".offcanvas-body");
+
+  // Aggiungo al carrello
+  offcanvasBody.innerHTML += /*html*/ `
+        <div class="cart-item">
+          <div class="container">
+            <div class="row mb-3">
+              <div class="col-4">
+                <img src="${imgSrc}" alt="Book image" width="100" />
+              </div>
+              <div class="col-8"><p class="truncate-2-lines">${title}</p>
+                <p class='card-price mb-0'><span class="orange">Price 👉</span> ${price}$</p>
+                <p class="number mt-0"><span class="orange">Number 👉</span> 1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    `;
+};
 
 const removeCard = (event) => {
   const deleteButton = event.target;
@@ -69,4 +101,9 @@ const showSpinner = () => {
 //se premo su un altro titolo o sullo schermo il nome completo svanisce
 const popover = new bootstrap.Popover(".popover-dismiss", {
   trigger: "focus",
+});
+
+const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl);
 });

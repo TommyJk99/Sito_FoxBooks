@@ -1,9 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
 body {
+  font-family: "Rubik", sans-serif;
   background-color: rgb(226, 226, 226) !important;
 }
 
 .bg-brown {
   background-image: linear-gradient(to right bottom, #622d00, #874103, #ae5703, #d66e03, #ff8600);
+}
+
+.orange {
+  color: #874103;
 }
 
 nav .form-control {
@@ -17,7 +24,7 @@ form > button {
 #cards img {
   object-fit: cover;
   width: 100%;
-  height: 350px;
+  height: 400px;
 }
 
 .truncate-2-lines {
@@ -38,6 +45,19 @@ form > button {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
+}
+
+.card {
+  transition: transform 0.4s ease; /* Effetto di transizione per un cambiamento più fluido */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.offcanvas-body p {
+  font-weight: bold;
 }
 
 /* bottone che sposta la x di chrome per cancellare la ricerca */
